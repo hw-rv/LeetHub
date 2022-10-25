@@ -36,6 +36,8 @@ let difficulty = '';
 /* state of upload for progress */
 let uploadState = { uploading: false };
 
+let subFolder = 'LeetCode'
+
 /* Get file extension for submission */
 function findLanguage() {
   const tag = [
@@ -66,8 +68,11 @@ const upload = (
   msg,
   cb = undefined,
 ) => {
+  if (difficulty == null || difficulty == undefined || difficulty === '') {
+    difficulty = 'Unknown'
+  }
   // To validate user, load user object from GitHub.
-  const URL = `https://api.github.com/repos/${hook}/contents/LeetCode/${directory}/${filename}`;
+  const URL = `https://api.github.com/repos/${hook}/contents/${subFolder}/${difficulty}/${directory}/${filename}`;
 
   /* Define Payload */
   let data = {
@@ -137,7 +142,10 @@ const update = (
   prepend,
   cb = undefined,
 ) => {
-  const URL = `https://api.github.com/repos/${hook}/contents/LeetCode/${directory}/README.md`;
+  if (difficulty == null || difficulty == undefined || difficulty === '') {
+    difficulty = 'Unknown'
+  }
+  const URL = `https://api.github.com/repos/${hook}/contents/${subFolder}/${difficulty}/${directory}/README.md`;
 
   /* Read from existing file on GitHub */
   const xhr = new XMLHttpRequest();
