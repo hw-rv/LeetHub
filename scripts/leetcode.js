@@ -432,7 +432,8 @@ function getProblemNameSlug() {
       questionTitle = qtitle[0].innerText;
     }
   }
-  return addLeadingZeros(convertToSlug(questionTitle));
+//   return addLeadingZeros(convertToSlug(questionTitle));
+  return convertToSlug(questionTitle);
 }
 
 function addLeadingZeros(title) {
